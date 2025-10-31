@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex items-center justify-center transition-colors duration-200 page-bg">
+  <div class="w-full max-w-md">
+    <div class="flex justify-end mb-4">
+      <button id="themeToggle"
+              class="px-3 py-2 rounded border transition toggle-light"
+              type="button">🌙 Dark</button>
+    </div>
+
+    <div class="shadow-md rounded-lg p-8 transition-colors duration-200 card-bg">
+      <h1 class="text-3xl font-bold text-center mb-6 text-main">Register</h1>
+
+      <form class="space-y-4">
+        <div>
+          <label for="username" class="block font-medium mb-1 text-main">Username</label>
+          <input id="username" type="text" required
+                 class="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 input-skin">
+        </div>
+
+        <div>
+          <label for="email" class="block font-medium mb-1 text-main">Email</label>
+          <input id="email" type="email" required
+                 class="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 input-skin">
+        </div>
+
+        <div>
+          <label for="dob" class="block font-medium mb-1 text-main">Date of Birth</label>
+          <input id="dob" type="date" required
+                 class="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 input-skin">
+        </div>
+
+        <div>
+          <label for="password" class="block font-medium mb-1 text-main">Password</label>
+          <input id="password" type="password" required
+                 class="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 input-skin">
+        </div>
+
+        <div>
+          <label for="confirmPassword" class="block font-medium mb-1 text-main">Confirm Password</label>
+          <input id="confirmPassword" type="password" required
+                 class="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 input-skin">
+        </div>
+
+        <button type="submit" class="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+          Register
+        </button>
+      </form>
+
+      <p class="text-center mt-4 text-muted">
+        Already have an account?
+        <a href="login.html" class="text-blue-500 hover:underline">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+
+      function apply(theme) {
+        if (theme === 'dark') {
+          root.classList.add('dark');  btn.textContent = '☀️ Light';
+        } else {
+          root.classList.remove('dark'); btn.textContent = '🌙 Dark';
+        }
+      }
+      const saved = localStorage.getItem('theme-v2');
+      const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(saved ? saved : (prefersDark ? 'dark' : 'light'));
+
+      btn.addEventListener('click', () => {
+        const next = root.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('theme-v2', next);
+        apply(next);
+      });
+    })();
+  </script>
+</body>
+</html>
