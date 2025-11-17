@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen p-8">
+
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+
+    <h1 class="text-2xl font-bold mb-4" id="welcomeMessage">Welcome </h1>
+
+    <h2 class="text-xl font-semibold mb-2">Registered Users</h2>
+
+    <table class="w-full border-collapse border border-gray-300">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="border p-2">Username</th>
+          <th class="border p-2">Email</th>
+          <th class="border p-2">Date of Birth</th>
+          <th class="border p-2">Role</th>
+        </tr>
+      </thead>
+      <tbody id="usersTableBody"></tbody>
+    </table>
+
+  </div>
+
+  <script>
+    // שליפת המשתמש המחובר
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // הצגת ברכת Welcome
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    if (currentUser) {
+      welcomeMessage.textContent = `Welcome ${currentUser.username}`;
+    } else {
+      welcomeMessage.textContent = "Welcome (No user logged in)";
+    }
+
+    // שליפת כל המשתמשים
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // הצגת כל המשתמשים בטבלה (ללא סיסמא)
+    const tableBody = document.getElementById('usersTableBody');
+
+    users.forEach(user => {
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td class="border p-2 text-center">${user.username}</td>
+        <td class="border p-2 text-center">${user.email}</td>
+        <td class="border p-2 text-center">${user.dob}</td>
+        <td class="border p-2 text-center">${user.role}</td>
+      `;
+
+      tableBody.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h1 class="text-2xl font-semibold mb-6 text-center">Register</h1>
+
+        <form id="registerForm" action="/src/register.html" method="post">
+            <input type="text" id="username" placeholder="Username" required class="w-full p-3 mb-4 border rounded">
+            <input type="email" id="email" placeholder="Email" required class="w-full p-3 mb-4 border rounded">
+            <input type="password" id="password" placeholder="Password" required class="w-full p-3 mb-4 border rounded">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="w-full p-3 mb-4 border rounded">
+
+            <label for="dob" class="block mb-2 text-sm font-medium text-gray-700">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required class="w-full p-3 mb-4 border rounded">
+
+            <!-- התחלת ה-CAPTCHA לפי ההנחיות -->
+            <div id="arithmetic-captcha-container" class="space-y-2">
+                <label for="captcha-answer" class="block text-sm font-medium text-gray-700">
+                    Solve the CAPTCHA:
+                </label>
+
+                <div class="flex items-center space-x-4">
+                    <span id="arithmetic-challenge" class="text-lg font-semibold text-gray-800"></span>
+
+                    <button type="button" id="refresh-arithmetic-captcha" title="Refresh CAPTCHA">
+                        <img
+                          class="h-10"
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/ReCAPTCHA_icon.svg/150px-ReCAPTCHA_icon.svg.png?20231023175148"
+                          alt="Refresh CAPTCHA"
+                        >
+                    </button>
+                </div>
+
+                <input
+                  type="text"
+                  id="arithmetic-answer"
+                  name="arithmetic-answer"
+                  class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Enter the answer"
+                >
+
+                <p id="arithmetic-error" class="mt-1 text-sm text-red-500 hidden">
+                    Incorrect CAPTCHA answer.
+                </p>
+
+                <!-- הודעה על יותר מדי ניסיונות CAPTCHA -->
+                <p id="captcha-attempts-error" class="mt-1 text-sm text-red-500 hidden">
+                    Too many incorrect CAPTCHA attempts. Please try again later.
+                </p>
+            </div>
+            <!-- סוף ה-CAPTCHA -->
+
+            <button type="submit" class="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors mt-4">
+                Register
+            </button>
+
+            <a href="login.html" class="block text-center mt-4 text-blue-500 hover:underline">
+                Already have an account? Login
+            </a>
+
+            <div id="registerMessage" class="mt-2 text-red-500 text-center text-sm"></div>
+        </form>
+    </div>
+
+    <!-- חייב להיות לפני קובץ הרישום -->
+    <script src="users.js"></script>
+
+    <!-- קובץ הלוגיקה של הרישום עם CAPTCHA (במקום register.js) -->
+    <script src="captcha.js"></script>
+
+</body>
+</html>

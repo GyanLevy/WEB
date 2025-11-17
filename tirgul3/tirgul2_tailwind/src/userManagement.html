@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- הקובץ style.css כמו שביקשת -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<!-- עיצוב חדש של ה-body -->
+<body class="bg-gray-100 flex p-10 justify-center h-screen">
+
+  <!-- Div הראשי -->
+  <div class="bg-white p-8 rounded shadow-md">
+
+      <!-- כותרת שתתמלא מתוך localStorage -->
+      <h1 id="userName" class="text-xl font-bold mb-4"></h1>
+
+      <!-- טבלה ריקה שתתמלא מתוך db.json -->
+      <table id="usersData" class="min-w-full bg-white shadow-md rounded-lg">
+          <thead class="bg-gray-200">
+              <tr></tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+
+  </div>
+
+  <!-- קובץ לוגיקה -->
+  <script src="userManagement.js"></script>
+</body>
+</html>

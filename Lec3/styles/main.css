@@ -1,0 +1,33 @@
+#app{
+    position: relative;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    z-index: 100;
+    padding: 20px;
+    box-shadow: inset 0px 0px rgba(0,0,0,0.1);
+    overflow: auto;
+    background-color: #dcdcdc75;
+}
+.content{
+    position: absolute;
+    top: 0;
+    right:0;
+    left: 200px;
+    padding:20px;
+}
+.row{
+    margin-left: 20px;
+    margin-bottom:20px;
+}
+.col {
+   display: table-cell;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
